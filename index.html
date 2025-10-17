@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login - Quantix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white p-8 rounded shadow max-w-sm w-full">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Iniciar Sesión</h2>
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+        <input id="email" type="email" class="w-full border rounded px-3 py-2" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input id="password" type="password" class="w-full border rounded px-3 py-2" required />
+      </div>
+      <button type="submit" class="w-full bg-[#12273D] text-white px-4 py-2 rounded">Ingresar</button>
+    </form>
+    <p id="mensajeError" class="text-red-500 text-sm mt-4 text-center"></p>
+  </div>
+
+  <script src="./login.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', loginUser);
+  </script>
+</body>
+</html>
