@@ -4,5 +4,6 @@ export const endpoints = {
     users: `${API_BASE}/users`,
     profiles: `${API_BASE}/profiles`,
     products: `${API_BASE}/products`,
-    categories: `${API_BASE}/categories`
+    categories: `${API_BASE}/categories`,
+    auth: `${API_BASE}/auth/login`
 }
