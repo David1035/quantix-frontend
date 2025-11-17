@@ -1,54 +1,87 @@
-<!DOCTYPE html><html lang="es"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Quantix | Reportes</title>
-<link rel="stylesheet" href="./assets/css/styles.css"/>
-<!-- SheetJS para exportar a Excel -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
-</head><body>
-<aside class="sidebar">
-  <h1 class="logo">Quantix</h1>
-  <nav>
-    <a href="./index.html">🏠 Dashboard</a>
-    <a href="./credits.html">💳 Créditos</a>
-    <a href="./products.html">📦 Productos</a>
-    <a href="./categories.html">🗂️ Categorías</a>
-    <a href="./users.html">👥 Usuarios</a>
-    <a href="./profiles.html">🧩 Perfiles</a>
-    <a class="active" href="./reports.html">📊 Reportes</a>
-  </nav>
-</aside>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Quantix | Reportes</title>
+  <link rel="stylesheet" href="./assets/css/styles.css"/>
+  <!-- Opcional: Excel / XLSX -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h1 class="logo">Quantix</h1>
+    <nav>
+      <a href="./index.html">Dashboard</a>
+      <a href="./products.html">Productos</a>
+      <a href="./categories.html">Categorías</a>
+      <a href="./customers.html">Clientes</a>
+      <a href="./credits.html">Créditos</a>
+      <a href="./reports.html" class="active">Reportes</a>
+    </nav>
+  </div>
 
-<main class="main">
-  <header class="topbar">
-    <h2>Reportes</h2>
-    <div class="row">
-      <select id="dataset" class="select">
-        <option value="credits">Créditos</option>
-        <option value="products">Productos</option>
-        <option value="categories">Categorías</option>
-        <option value="users">Usuarios</option>
-        <option value="profiles">Perfiles</option>
-      </select>
-      <input id="filter" class="input" placeholder="Filtrar (nombre/email/cliente)…"/>
-      <button id="reload" class="btn">Cargar</button>
-      <button id="exportXLSX" class="btn">Exportar Excel</button>
-      <button id="exportCSV"  class="btn secondary">Exportar CSV</button>
-      <button id="logoutBtn" class="btn danger">Cerrar sesión</button>
+  <main class="main">
+    <div class="topbar">
+      <h2>Reportes y KPIs</h2>
+      <button id="btnLogout" class="btn secondary">Cerrar sesión</button>
     </div>
-  </header>
 
-  <section class="card">
-    <div class="row" style="justify-content:space-between;">
-      <div class="muted">Previsualización</div>
-      <div id="kpis" class="muted"></div>
+    <div class="card">
+      <div class="row">
+        <div>
+          <label class="muted">Dataset</label>
+          <select id="dataset" class="select">
+            <option value="credits">Créditos</option>
+            <option value="creditPayments">Abonos de crédito</option>
+            <option value="customers">Clientes</option>
+            <option value="sales">Ventas</option>
+            <option value="inventory">Inventario (Productos)</option>
+          </select>
+        </div>
+        <div class="row" style="margin-left:auto; gap:8px; align-self:flex-end">
+          <button id="btnReload" class="btn secondary">Recargar</button>
+          <button id="btnCsv" class="btn">Exportar CSV</button>
+          <button id="btnXlsx" class="btn">Exportar Excel</button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="grid-4 mt-16" id="kpiGrid">
+        <div class="card">
+          <p class="muted">Métrica 1</p>
+          <h3 id="kpi1">-</h3>
+        </div>
+        <div class="card">
+          <p class="muted">Métrica 2</p>
+          <h3 id="kpi2">-</h3>
+        </div>
+        <div class="card">
+          <p class="muted">Métrica 3</p>
+          <h3 id="kpi3">-</h3>
+        </div>
+        <div class="card">
+          <p class="muted">Métrica 4</p>
+          <h3 id="kpi4">-</h3>
+        </div>
+      </div>
+
+      <!-- Tabla -->
+      <div class="mt-16">
+        <p id="infoMsg" class="muted"></p>
+        <div style="overflow:auto">
+          <table id="reportTable" class="table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
-    <table class="table mt-16">
-      <thead id="thead"></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-    <p id="status" class="muted mt-8"></p>
-  </section>
-</main>
 
-<script type="module" src="./assets/js/modules/reports/reports.controller.js"></script>
-</body></html>
+    <p id="errorMsg" class="error mt-16"></p>
+  </main>
+
+  <script type="module" src="./assets/js/modules/reports/reports.controller.js"></script>
+</body>
+</html>
