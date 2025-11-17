@@ -1,0 +1,83 @@
+<!-- categories.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Categorías | Quantix</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <h1 class="logo">Quantix</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="products.html">Productos</a>
+      <a href="categories.html" class="active">Categorías</a>
+      <a href="credits.html">Créditos</a>
+      <a href="reports.html">Reportes</a>
+      <a href="users.html">Usuarios</a>
+      <a href="profiles.html">Perfiles</a>
+    </nav>
+    <button id="logoutBtn" class="btn secondary mt-16">Cerrar sesión</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2>Categorías</h2>
+        <p class="muted">Administra las categorías asociadas a los productos.</p>
+      </div>
+    </header>
+
+    <!-- Crear categoría -->
+    <section class="card">
+      <h3>Crear categoría</h3>
+      <form id="categoryCreateForm" class="grid-3 mt-8">
+        <div class="col-2">
+          <label>Nombre</label>
+          <input type="text" name="name" class="input" required />
+        </div>
+        <div class="col-3">
+          <label>Descripción (opcional)</label>
+          <input type="text" name="description" class="input" />
+        </div>
+        <div class="col-3 mt-8">
+          <button type="submit" class="btn">Crear categoría</button>
+        </div>
+      </form>
+      <p id="categoryCreateError" class="error mt-8"></p>
+    </section>
+
+    <!-- Listado -->
+    <section class="card mt-16">
+      <div class="row">
+        <h3 class="col-3">Listado de categorías</h3>
+        <div>
+          <input id="categorySearchInput" class="input" placeholder="Buscar por nombre..." />
+        </div>
+      </div>
+      <div class="mt-8">
+        <table class="table" id="categoriesTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- filas por JS -->
+          </tbody>
+        </table>
+        <p id="categoriesTableEmpty" class="muted mt-8" style="display:none;">
+          No hay categorías para mostrar.
+        </p>
+        <p id="categoriesTableError" class="error mt-8"></p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="assets/js/modules/categories/categories.controller.js"></script>
+</body>
+</html>

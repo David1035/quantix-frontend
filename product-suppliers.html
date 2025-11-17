@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Quantix | Productos - Proveedores</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <h1 class="logo">Quantix</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="users.html">Usuarios</a>
+      <a href="profiles.html">Perfiles</a>
+      <a href="customers.html">Clientes</a>
+      <a href="credits.html">Créditos</a>
+      <a href="credit-payments.html">Abonos</a>
+      <a href="categories.html">Categorías</a>
+      <a href="products.html">Productos</a>
+      <a href="suppliers.html">Proveedores</a>
+      <a href="product-suppliers.html" class="active">Prod–Proveedor</a>
+      <a href="sales.html">Ventas</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h2>Relación Producto–Proveedor</h2>
+      <button class="btn secondary" id="btnLogout">Cerrar sesión</button>
+    </div>
+
+    <section class="grid-2">
+      <!-- Formulario -->
+      <div class="card">
+        <h3>Asignar proveedor a producto</h3>
+        <form id="psForm">
+          <label class="mt-8">Producto</label>
+          <select id="productId" class="select" required>
+            <option value="">Seleccione producto...</option>
+          </select>
+
+          <label class="mt-8">Proveedor</label>
+          <select id="supplierId" class="select" required>
+            <option value="">Seleccione proveedor...</option>
+          </select>
+
+          <button type="submit" class="btn mt-16">Guardar relación</button>
+          <p id="formMsg" class="muted mt-8"></p>
+        </form>
+      </div>
+
+      <!-- Tabla -->
+      <div class="card col-2">
+        <div class="row" style="justify-content: space-between; margin-bottom: 8px;">
+          <h3>Relaciones registradas</h3>
+          <input id="filterInput" class="input" placeholder="Filtrar por producto o proveedor..." />
+        </div>
+
+        <table class="table" id="psTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Producto</th>
+              <th>Proveedor</th>
+              <th>Creado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody><!-- dinámico --></tbody>
+        </table>
+
+        <p id="tableMsg" class="muted mt-8"></p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./assets/js/modules/product-suppliers/product-suppliers.controller.js"></script>
+</body>
+</html>

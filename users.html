@@ -1,0 +1,93 @@
+<!-- users.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Usuarios | Quantix</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <h1 class="logo">Quantix</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="products.html">Productos</a>
+      <a href="categories.html">Categorías</a>
+      <a href="credits.html">Créditos</a>
+      <a href="reports.html">Reportes</a>
+      <a href="users.html" class="active">Usuarios</a>
+      <a href="profiles.html">Perfiles</a>
+    </nav>
+    <button id="logoutBtn" class="btn secondary mt-16">Cerrar sesión</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2>Gestión de usuarios</h2>
+        <p class="muted">Alta, edición y eliminación de usuarios del sistema.</p>
+      </div>
+    </header>
+
+    <!-- Crear usuario -->
+    <section class="card">
+      <h3>Crear usuario</h3>
+      <form id="userCreateForm" class="grid-3 mt-8">
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" class="input" required />
+        </div>
+        <div>
+          <label>Rol</label>
+          <select name="role" class="select">
+            <option value="">(por defecto: vendedor)</option>
+            <option value="vendedor">vendedor</option>
+            <option value="admin">admin</option>
+            <option value="administrador">administrador</option>
+          </select>
+        </div>
+        <div>
+          <label>Contraseña</label>
+          <input type="password" name="password" class="input" required minlength="8" />
+        </div>
+        <div class="col-3 mt-8">
+          <button type="submit" class="btn">Crear usuario</button>
+        </div>
+      </form>
+      <p id="userCreateError" class="error mt-8"></p>
+    </section>
+
+    <!-- Listado -->
+    <section class="card mt-16">
+      <div class="row">
+        <h3 class="col-3">Listado de usuarios</h3>
+        <div>
+          <input id="userSearchInput" class="input" placeholder="Buscar por email o rol..." />
+        </div>
+      </div>
+      <div class="mt-8">
+        <table class="table" id="usersTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Rol</th>
+              <th>Nueva contraseña (opcional)</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- filas por JS -->
+          </tbody>
+        </table>
+        <p id="usersTableEmpty" class="muted mt-8" style="display:none;">
+          No hay usuarios para mostrar.
+        </p>
+        <p id="usersTableError" class="error mt-8"></p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="assets/js/modules/users/users.controller.js"></script>
+</body>
+</html>

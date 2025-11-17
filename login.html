@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quantix | Login</title>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+<body class="center">
+  <form id="loginForm" class="card" style="width:380px">
+    <h2>Iniciar sesión</h2>
+    <label class="mt-8">Email</label>
+    <input id="email" type="email" class="input" required />
+    <label class="mt-8">Contraseña</label>
+    <input id="password" type="password" class="input" required />
+    <button class="btn mt-16" type="submit">Ingresar</button>
+    <p id="msg" class="muted mt-8"></p>
+  </form>
+
+  <script type="module">
+    import { API_BASE, endpoints, setToken } from "./assets/js/apiConfig.js";
+
+    const form = document.getElementById("loginForm");
+    const msg  = document.getElementById("msg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.textContent = "";
+
+      const payload = {
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}${endpoints.auth}/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          // aquí llega el 401 de passport-local (boom.unauthorized)
+          throw new Error("Credenciales inválidas");
+        }
+
+        const data = await res.json();
+        if (!data?.token) {
+          throw new Error("Token no recibido desde el servidor");
+        }
+
+        // 1) Guardamos token para JWT
+        setToken(data.token);
+
+        // 2) Guardamos el usuario autenticado para usarlo en perfiles (perfil por defecto)
+        localStorage.setItem("currentUser", JSON.stringify(data.user || {}));
+
+        // 3) Redirigimos al dashboard
+        window.location.href = "./index.html";
+      } catch (err) {
+        console.error(err);
+        msg.textContent = err.message || "Error al autenticar";
+      }
+    });
+  </script>
+</body>
+</html>

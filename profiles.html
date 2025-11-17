@@ -1,0 +1,134 @@
+<!-- profiles.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perfiles | Quantix</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <h1 class="logo">Quantix</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="products.html">Productos</a>
+      <a href="categories.html">Categorías</a>
+      <a href="credits.html">Créditos</a>
+      <a href="reports.html">Reportes</a>
+      <a href="users.html">Usuarios</a>
+      <a href="profiles.html" class="active">Perfiles</a>
+    </nav>
+    <button id="logoutBtn" class="btn secondary mt-16">Cerrar sesión</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2>Perfiles de usuario</h2>
+        <p class="muted">
+          Relación 1:1 entre Usuario y Perfil. Crea nuevos usuarios con su perfil
+          o edita los existentes.
+        </p>
+      </div>
+    </header>
+
+    <!-- Crear usuario + perfil -->
+    <section class="card">
+      <h3>Crear usuario + perfil</h3>
+      <p class="muted">
+        Este formulario usa <code>POST /profiles</code> e internamente crea el usuario
+        y su perfil en una sola operación.
+      </p>
+      <form id="profileCreateForm" class="grid-3 mt-8">
+        <div>
+          <label>Email (usuario)</label>
+          <input type="email" name="email" class="input" required />
+        </div>
+        <div>
+          <label>Rol</label>
+          <select name="role" class="select">
+            <option value="">(por defecto: vendedor)</option>
+            <option value="vendedor">vendedor</option>
+            <option value="admin">admin</option>
+            <option value="administrador">administrador</option>
+          </select>
+        </div>
+        <div>
+          <label>Contraseña</label>
+          <input type="password" name="password" class="input" required minlength="8" />
+        </div>
+
+        <div>
+          <label>Nombre</label>
+          <input type="text" name="name" class="input" required />
+        </div>
+        <div>
+          <label>Apellido</label>
+          <input type="text" name="lastName" class="input" required />
+        </div>
+        <div>
+          <label>Documento</label>
+          <input type="number" name="document" class="input" required />
+        </div>
+        <div>
+          <label>Teléfono</label>
+          <input type="tel" name="phone" class="input" required minlength="10" />
+        </div>
+
+        <div class="col-3 mt-8">
+          <button type="submit" class="btn">Crear usuario + perfil</button>
+        </div>
+      </form>
+      <p id="profileCreateError" class="error mt-8"></p>
+      <p id="profileCreateInfo" class="muted mt-8"></p>
+    </section>
+
+    <!-- Editar perfil existente -->
+    <section class="card mt-16">
+      <h3>Editar perfil existente</h3>
+      <div class="grid-2 mt-8">
+        <div>
+          <label>Seleccionar usuario (con perfil)</label>
+          <select id="profileUserSelect" class="select">
+            <!-- opciones generadas por JS -->
+          </select>
+          <p class="muted mt-8">
+            Si ingresaste con un usuario que tiene perfil, se seleccionará de forma automática.
+          </p>
+        </div>
+        <div>
+          <label>ID de perfil (solo lectura)</label>
+          <input id="profileId" class="input" disabled />
+        </div>
+      </div>
+
+      <form id="profileEditForm" class="grid-3 mt-16">
+        <div>
+          <label>Nombre</label>
+          <input type="text" name="name" class="input" required />
+        </div>
+        <div>
+          <label>Apellido</label>
+          <input type="text" name="lastName" class="input" required />
+        </div>
+        <div>
+          <label>Documento</label>
+          <input type="number" name="document" class="input" required />
+        </div>
+        <div>
+          <label>Teléfono</label>
+          <input type="tel" name="phone" class="input" required minlength="10" />
+        </div>
+        <div class="col-3 mt-8">
+          <button type="submit" class="btn">Guardar cambios de perfil</button>
+        </div>
+      </form>
+
+      <p id="profileEditInfo" class="muted mt-8"></p>
+      <p id="profileEditError" class="error mt-8"></p>
+    </section>
+  </main>
+
+  <script type="module" src="assets/js/modules/profiles/profiles.controller.js"></script>
+</body>
+</html>

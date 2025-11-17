@@ -1,28 +1,45 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Login - Quantix</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="bg-white p-8 rounded shadow max-w-sm w-full">
-    <h2 class="text-2xl font-semibold mb-6 text-center">Iniciar Sesión</h2>
-    <form id="loginForm" class="space-y-4">
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-        <input id="email" type="email" class="w-full border rounded px-3 py-2" required />
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Contraseña</label>
-        <input id="password" type="password" class="w-full border rounded px-3 py-2" required />
-      </div>
-      <button type="submit" class="w-full bg-[#12273D] text-white px-4 py-2 rounded">Ingresar</button>
-    </form>
-    <p id="mensajeError" class="text-red-500 text-sm mt-4 text-center"></p>
-  </div>
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Quantix | Dashboard</title>
+<link rel="stylesheet" href="./assets/css/styles.css"/>
+</head><body>
+<aside class="sidebar">
+  <h1 class="logo">Quantix</h1>
+  <nav>
+    <a class="active" href="./index.html">🏠 Dashboard</a>
+    <a href="./credits.html">💳 Créditos</a>
+    <a href="./products.html">📦 Productos</a>
+    <a href="./categories.html">🗂️ Categorías</a>
+    <a href="./users.html">👥 Usuarios</a>
+    <a href="./profiles.html">🧩 Perfiles</a>
+  </nav>
+</aside>
 
-  <script type="module" src="./modules/auth/login.js"></script>
-</body>
-</html>
+<main class="main">
+  <header class="topbar">
+    <div id="apiBase" class="muted"></div>
+    <button class="btn secondary" id="logoutBtn">Cerrar sesión</button>
+  </header>
+
+  <section class="card">
+    <h2>Resumen</h2>
+    <ul class="grid-3 mt-16" id="summary"></ul>
+  </section>
+</main>
+
+<script type="module">
+  import { requireAuth, logout } from "./assets/js/guard.js";
+  import { API_BASE } from "./assets/js/apiConfig.js";
+
+  requireAuth();
+  document.getElementById("apiBase").textContent = `API: ${API_BASE}`;
+  document.getElementById("logoutBtn").addEventListener("click", logout);
+
+  // (Opcional) aquí puedes traer contadores globales si tu backend expone un /stats
+  document.getElementById('summary').innerHTML = `
+    <li class="card"><div class="muted">Módulos</div><div class="mt-8">Créditos, Productos, Categorías, Usuarios, Perfiles</div></li>
+    <li class="card"><div class="muted">Estado</div><div class="mt-8">Conectado</div></li>
+    <li class="card"><div class="muted">Seguridad</div><div class="mt-8">JWT</div></li>
+  `;
+</script>
+</body></html>

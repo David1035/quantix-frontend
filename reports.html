@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Quantix | Reportes</title>
+<link rel="stylesheet" href="./assets/css/styles.css"/>
+<!-- SheetJS para exportar a Excel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+</head><body>
+<aside class="sidebar">
+  <h1 class="logo">Quantix</h1>
+  <nav>
+    <a href="./index.html">🏠 Dashboard</a>
+    <a href="./credits.html">💳 Créditos</a>
+    <a href="./products.html">📦 Productos</a>
+    <a href="./categories.html">🗂️ Categorías</a>
+    <a href="./users.html">👥 Usuarios</a>
+    <a href="./profiles.html">🧩 Perfiles</a>
+    <a class="active" href="./reports.html">📊 Reportes</a>
+  </nav>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <h2>Reportes</h2>
+    <div class="row">
+      <select id="dataset" class="select">
+        <option value="credits">Créditos</option>
+        <option value="products">Productos</option>
+        <option value="categories">Categorías</option>
+        <option value="users">Usuarios</option>
+        <option value="profiles">Perfiles</option>
+      </select>
+      <input id="filter" class="input" placeholder="Filtrar (nombre/email/cliente)…"/>
+      <button id="reload" class="btn">Cargar</button>
+      <button id="exportXLSX" class="btn">Exportar Excel</button>
+      <button id="exportCSV"  class="btn secondary">Exportar CSV</button>
+      <button id="logoutBtn" class="btn danger">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <section class="card">
+    <div class="row" style="justify-content:space-between;">
+      <div class="muted">Previsualización</div>
+      <div id="kpis" class="muted"></div>
+    </div>
+    <table class="table mt-16">
+      <thead id="thead"></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <p id="status" class="muted mt-8"></p>
+  </section>
+</main>
+
+<script type="module" src="./assets/js/modules/reports/reports.controller.js"></script>
+</body></html>
