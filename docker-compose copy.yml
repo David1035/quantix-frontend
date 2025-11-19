@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=quantix
+      - POSTGRES_USER=david
+      - POSTGRES_PASSWORD=admin456
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres_data:/var/lib/postgreslq/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=davyd2h@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+     - 5050:80
+
+
+  mysql:
+    image: mysql:8
+    environment:
+      - MYSQL_DATABASE=my_store
+      - MYSQL_USER=david
+      - MYSQL_PASSWORD=admin456
+      - MYSQL_ROOT_PASSWORD=admin456
+    ports:
+      - 33061:3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin456
+      - PMA_HOST=mysql
+
+  
