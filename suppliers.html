@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Quantix | Proveedores</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+<body>
+  <!-- Sidebar común -->
+  <aside class="sidebar">
+    <h1 class="logo">Quantix</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="users.html">Usuarios</a>
+      <a href="profiles.html">Perfiles</a>
+      <a href="customers.html">Clientes</a>
+      <a href="credits.html">Créditos</a>
+      <a href="credit-payments.html">Abonos</a>
+      <a href="categories.html">Categorías</a>
+      <a href="products.html">Productos</a>
+      <a href="suppliers.html" class="active">Proveedores</a>
+      <a href="product-suppliers.html">Prod–Proveedor</a>
+      <a href="ingresos.html">Ingresos</a>
+      <a href="sales.html">Ventas</a>
+      <a href="reports.html">Reportes</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main">
+    <div class="topbar">
+      <h2>Proveedores</h2>
+      <button class="btn secondary" id="btnLogout">Cerrar sesión</button>
+    </div>
+
+    <!-- Formulario crear/editar proveedor -->
+    <section class="card">
+      <h3>Crear / editar proveedor</h3>
+      <form id="supplierForm" class="grid-3 mt-16">
+        <div class="col-2">
+          <label>Nombre</label>
+          <input id="name" type="text" class="input" required />
+        </div>
+        <div class="col-2">
+          <label>Contacto</label>
+          <input id="contacto" type="text" class="input" required />
+        </div>
+        <!-- campo oculto para ID cuando edites -->
+        <input id="supplierId" type="hidden" />
+        <div class="row" style="align-items:flex-end; gap:8px;">
+          <button type="submit" class="btn">Guardar</button>
+          <button type="button" id="btnReset" class="btn secondary">Limpiar</button>
+        </div>
+      </form>
+      <p id="formMsg" class="muted mt-8"></p>
+    </section>
+
+    <!-- Tabla de proveedores -->
+    <section class="card mt-16">
+      <div class="row" style="justify-content:space-between; margin-bottom:8px;">
+        <h3>Listado de proveedores</h3>
+        <input id="searchSupplier" class="input" placeholder="Buscar por nombre o contacto..." />
+      </div>
+
+      <table class="table" id="suppliersTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Contacto</th>
+            <th style="width:140px;">Acciones</th>
+          </tr>
+        </thead>
+        <tbody><!-- filas dinámicas --></tbody>
+      </table>
+
+      <p id="tableMsg" class="muted mt-8"></p>
+    </section>
+  </main>
+
+  <!-- Controlador de proveedores -->
+  <script type="module" src="./assets/js/modules/suppliers/suppliers.controller.js"></script>
+</body>
+</html>

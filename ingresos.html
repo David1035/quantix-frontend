@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Quantix | Ingresos de mercancía</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <h1 class="logo">Quantix</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="users.html">Usuarios</a>
+      <a href="profiles.html">Perfiles</a>
+      <a href="customers.html">Clientes</a>
+      <a href="credits.html">Créditos</a>
+      <a href="credit-payments.html">Abonos</a>
+      <a href="categories.html">Categorías</a>
+      <a href="products.html">Productos</a>
+      <a href="suppliers.html">Proveedores</a>
+      <a href="product-suppliers.html">Prod–Proveedor</a>
+      <a href="ingresos.html" class="active">Ingresos</a>
+      <a href="sales.html">Ventas</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h2>Ingresos de mercancía</h2>
+      <button class="btn secondary" id="btnLogout">Cerrar sesión</button>
+    </div>
+
+    <section class="grid-2">
+      <!-- Formulario de ingreso -->
+      <div class="card col-2">
+        <h3>Registrar ingreso</h3>
+        <form id="ingresoForm">
+          <div class="grid-3">
+            <div class="col-3">
+              <label class="mt-8">Proveedor</label>
+              <select id="supplierId" class="select" required>
+                <option value="">Seleccione proveedor...</option>
+              </select>
+            </div>
+
+            <div class="col-2">
+              <label class="mt-8">Producto</label>
+              <select id="productId" class="select" required>
+                <option value="">Seleccione producto...</option>
+              </select>
+              <p class="muted mt-8" id="stockInfo">
+                Stock actual: —
+              </p>
+            </div>
+
+            <div>
+              <label class="mt-8">Cantidad que ingresa</label>
+              <input id="cantidad" type="number" class="input" min="1" required />
+            </div>
+
+            <div>
+              <label class="mt-8">Precio unitario (compra)</label>
+              <input id="precioCompra" type="number" class="input" step="0.01" min="0" required />
+            </div>
+
+            <div>
+              <label class="mt-8">Precio de venta (opcional)</label>
+              <input id="precioVenta" type="number" class="input" step="0.01" min="0" />
+            </div>
+          </div>
+
+          <div class="row mt-16" style="justify-content:flex-end;">
+            <button type="submit" class="btn">Registrar ingreso</button>
+          </div>
+
+          <p id="formMsg" class="muted mt-8"></p>
+        </form>
+      </div>
+
+      <!-- Resumen de ingresos de la sesión -->
+      <div class="card col-2 mt-16">
+        <div class="row" style="justify-content: space-between; margin-bottom: 8px;">
+          <h3>Ingresos realizados (esta sesión)</h3>
+          <input id="filterIngresos" class="input" placeholder="Filtrar por proveedor o producto..." />
+        </div>
+
+        <table class="table" id="ingresosTable">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Proveedor</th>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio unitario</th>
+              <th>Total ingreso</th>
+              <th>Stock antes</th>
+              <th>Stock después</th>
+            </tr>
+          </thead>
+          <tbody><!-- filas dinámicas --></tbody>
+        </table>
+
+        <p id="ingresosMsg" class="muted mt-8"></p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./assets/js/modules/ingresos/ingresos.controller.js"></script>
+</body>
+</html>
