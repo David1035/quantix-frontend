@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3005;
 
 // 1. Sirve todos los archivos estáticos de la carpeta actual (CSS, JS, imágenes, etc.)
 app.use(express.static(__dirname));
